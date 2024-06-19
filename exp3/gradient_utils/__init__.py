@@ -41,6 +41,29 @@ def ascent_slide_gradients(slide:Slide, step_size:int):
                 print('ascent!', ele.wh_grads[i])
                 ele.wh_size[i] += (step_size if ele.wh_grads[i] > 0 else -step_size)
     print()
+
+def estimate_grad_ascent(slide:Slide, step_size:int, score_fn_batched, delta:int):
+    """estimate and step the gradients for all the slide elements given all the paramaters given a scoring function."""
+    s0 = score_fn_batched([slide.render()])[0]
+    for ele in slide.slideelements:
+        for delta_val in [ceil(delta*i/2) for i in range(1, 5)]:
+            for i in range(len(ele.xy_position)):
+                ele.xy_position[i] += delta_val
+                s_ele_i = score_fn_batched([slide.render()])[0]
+                gradval = (s_ele_i - s0) / delta_val
+                if random()/6 < abs(gradval):
+                    ele.xy_position[i] += step_size if gradval > 0 else -step_size
+                ele.xy_position[i] -= delta_val
+                # print((s_ele_i - s0) / delta_val)
+
+            for i in range(len(ele.wh_size)):
+                ele.wh_size[i] += delta_val
+                s_ele_i = score_fn_batched([slide.render()])[0]
+                gradval = (s_ele_i - s0) / delta_val
+                if random()/6 < abs(gradval):
+                    ele.wh_size[i] += step_size if gradval > 0 else -step_size
+                ele.wh_size[i] -= delta_val
+                # print((s_ele_i - s0) / delta_val)
                 
 
     

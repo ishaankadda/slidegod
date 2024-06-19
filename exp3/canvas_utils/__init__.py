@@ -28,7 +28,7 @@ class SlideElement:
 class Slide:
     def __init__(self, bg_color:Annotated[List[int], 3], slideelements:List[SlideElement]):
         self.bg_color = bg_color
-        self.canvas = Image.new("RGB", (1920, 1080), f"rgb{tuple(self.bg_color)}")
+        self.canvas = Image.new("RGB", (1080, 1080), f"rgb{tuple(self.bg_color)}")
         self.slideelements = slideelements if slideelements is not None else []
     
     def render(self) -> PIL.Image.Image:
