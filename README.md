@@ -17,7 +17,11 @@ To run this experiment and replicate generation of `render.png` (initial slide) 
 
 This script tries to optimise placement of two images on a blank white slide, the first being a [stock photo of a gathering of people](./sources/people.png) and the second, a [photo of a text box about ethics](./sources/ethicstext.png). \
 On running, it shows how the elements initially look (`render.png`) and then optimizes the placement and shows a preview as well (`render2.png`). \
-The placement of the slides is optimised by gradient ascent done using first principles.
+The placement of the slides is optimised by gradient ascent done using first principles. \
+An example can be found below:
+1. [example of how `render.png` can look.](./exp3/example_of_render.png)
+2. [example of how `render2.png` can look after optimisation loops 100 times.](./exp3/example_of_render2.png)
+
 
 # exp4 (ongoing)
 Can we vectorize the placement of elements on a slide canvas? \
